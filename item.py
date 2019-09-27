@@ -3,6 +3,7 @@ class item():
         self.damage = 0
         self.lvl = 0
         self.worth = 0
+        self.name = ""
 
     def load_item(self, **kwargs):
         for i in kwargs:
@@ -13,8 +14,5 @@ class item():
                 self.lvl = value
             if i == "worth":
                 self.worth = value
-
-
-Hand = item()
-Hand.load_item(damage=10, lvl=10, worth=10)
-print(Hand.damage)
+            if i == "name":
+                self.name = value
