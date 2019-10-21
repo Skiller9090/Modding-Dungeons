@@ -25,3 +25,5 @@ Classes:
         Damage
         Armor
     
+   Made by:
+    Skiller9090 and the discord crew.
