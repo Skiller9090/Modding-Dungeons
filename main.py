@@ -2,11 +2,8 @@ import pygame
 import os
 import random
 from inventory import inventory
-import colorsys
 
 class Player(object):
-
-
     def __init__(self):
         self.rect = pygame.Rect(32,32,16,16)
         self.health = 100
@@ -44,7 +41,6 @@ class Player(object):
             on_ground = False
 
 class Wall(object):
-
     def __init__(self, pos):
         walls.append(self)
         self.rect = pygame.Rect(pos[0], pos[1], 16, 16)
@@ -83,7 +79,7 @@ for row in level:
     y += 16
     x = 0
 wall_graphic = pygame.image.load("assets/0x72_DungeonTilesetII_v1.3/frames/wall_left.png")
-player_graphic = pygame.image.load("assets/0x72_DungeonTilesetII_v1.3/frames/wizzard_f_hit_anim_f0.png")
+player_graphic = pygame.image.load("assets/0x72_DungeonTilesetII_v1.3/frames/wizzard_f_idle_anim_f0.png")
 running = True
 jumping = False
 jumping_to_go = 0
@@ -129,6 +125,5 @@ while running:
     screen.blit(player_graphic,(player.rect[0],player.rect[1]-8))
     
     healthbar()
-    player.health -= 0.1
 
     pygame.display.flip()
