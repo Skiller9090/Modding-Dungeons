@@ -54,6 +54,7 @@ sy = 480
 pygame.display.set_caption("Get to the red square!")
 screen = pygame.display.set_mode((sx, sy))
 
+music = pygame.mixer.music.load("assets/music/type2.wav")
 
 clock = pygame.time.Clock()
 walls = []
@@ -117,7 +118,8 @@ while running:
     elif on_ground == True and jumping_to_go <= 0:
         jumping = False
 
-
+    if not pygame.mixer.music.get_busy():
+        pygame.mixer.music.play()
     screen.fill((0, 0, 0))
   
     for wall in walls:
