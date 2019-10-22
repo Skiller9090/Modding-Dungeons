@@ -71,7 +71,7 @@ def healthbar():
         percent = 0
     pygame.draw.rect(screen, (0, 255, 0),pygame.Rect(sx-100,0,percent*100,16))    
 x = y = 0
-def blank():
+def blank(x):
     None
 block_ids = {"0": blank,"1": Wall,"2": ""}
 for row in level:

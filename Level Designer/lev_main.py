@@ -9,9 +9,9 @@ sy = 1000
 screen = pygame.display.set_mode((sx, sy))
 clock = pygame.time.Clock()
 
-wall_graphic = pygame.image.load("../assets/0x72_DungeonTilesetII_v1.3/frames/wall_left.png")
-char_grpahic = pygame.image.load("../assets/0x72_DungeonTilesetII_v1.3/frames/wizzard_f_idle_anim_f0.png")
-ches_graphic = pygame.image.load("../assets/0x72_DungeonTilesetII_v1.3/frames/chest_full_open_anim_f0.png")
+wall_graphic = pygame.image.load("assets/0x72_DungeonTilesetII_v1.3/frames/wall_left.png")
+char_grpahic = pygame.image.load("assets/0x72_DungeonTilesetII_v1.3/frames/wizzard_f_idle_anim_f0.png")
+ches_graphic = pygame.image.load("assets/0x72_DungeonTilesetII_v1.3/frames/chest_full_open_anim_f0.png")
 
 running = True
 
@@ -26,10 +26,9 @@ def convert_to_file():
     for row in block_grid:
         string = ""
         for block in row:
-			string += str(block.id)
-
+            string += str(block.id)
         d3_matrix.append(string)
-    ffile = open("../level.txt","w")
+    ffile = open("level.txt","w")
     ffile.write("\n".join(d3_matrix))
     ffile.close()
     print(string)
