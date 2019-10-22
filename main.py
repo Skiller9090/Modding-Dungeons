@@ -1,14 +1,18 @@
 import pygame
 import os
 import random
-
+from inventory import inventory
+import colorsys
 
 class Player(object):
 
 
     def __init__(self):
         self.rect = pygame.Rect(32,32,16,16)
-
+        self.health = 100
+        self.maxhealth = 100
+        self.gold = 0
+        self.inv = inventory()
     def move(self, dx, dy):
         if dx != 0:
             self.move_axis(dx,0)
@@ -62,7 +66,14 @@ player = Player()
 levelfile = open("level.txt","r")
 level = levelfile.read().split("\n")
 levelfile.close()
-
+def healthbar():
+    pygame.draw.rect(screen, (255, 0, 0),pygame.Rect(sx-100,0,100,16))
+    percent = player.health/player.maxhealth
+    if percent > 1:
+        percent = 1
+    if percent < 0:
+        percent = 0
+    pygame.draw.rect(screen, (0, 255, 0),pygame.Rect(sx-100,0,percent*100,16))    
 x = y = 0
 for row in level:
     for col in row:
@@ -108,10 +119,16 @@ while running:
     elif on_ground == True and jumping_to_go <= 0:
         jumping = False
 
+
     screen.fill((0, 0, 0))
+  
     for wall in walls:
         pygame.draw.rect(screen, (255, 255, 255), wall.rect)
         screen.blit(wall_graphic, wall.rect)
     pygame.draw.rect(screen, (0, 0, 0), player.rect)
     screen.blit(player_graphic,(player.rect[0],player.rect[1]-8))
+    
+    healthbar()
+    player.health -= 0.1
+
     pygame.display.flip()
