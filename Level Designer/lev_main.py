@@ -17,21 +17,17 @@ running = True
 
 class block(object):
     def __init__(self, pos):
-        self.wall = 0
+        self.id = 0
         row_list.append(self)
         self.rect = pygame.Rect(pos[0], pos[1], 16, 16)
 
 def convert_to_file():
-    i = 0
-    wb = w
     d3_matrix = []
     for row in block_grid:
         string = ""
         for block in row:
-            if block.id:
-                string += "W"
-            else:
-                string += " "
+			string += str(block.id)
+
         d3_matrix.append(string)
     ffile = open("../level.txt","w")
     ffile.write("\n".join(d3_matrix))
