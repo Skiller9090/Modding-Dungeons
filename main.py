@@ -1,10 +1,9 @@
 import pygame
 import os
 import random
-from player import Player
 from blocks import Wall
 import settings
-
+from entities import Orc
 
 def gen_sec(blocks):
     return " "*blocks
@@ -17,7 +16,6 @@ music = pygame.mixer.music.load("assets/music/type2.wav")
 
 clock = pygame.time.Clock()
 #walls = []
-player = Player()
 settings.init()
 
 levelfile = open("level.txt","r")
@@ -36,8 +34,8 @@ for row in level:
     y += 16
     x = 0
 wall_graphic = pygame.image.load("assets/0x72_DungeonTilesetII_v1.3/frames/wall_left.png")
-player_graphic = pygame.image.load("assets/0x72_DungeonTilesetII_v1.3/frames/wizzard_f_idle_anim_f0.png")
-
+settings.player_graphic = pygame.image.load("assets/0x72_DungeonTilesetII_v1.3/frames/wizzard_f_idle_anim_f0.png")
+Orc(0,0)
 while settings.running:
     
     clock.tick(60)
@@ -50,21 +48,21 @@ while settings.running:
     
     key = pygame.key.get_pressed()
     if key[pygame.K_LEFT]:
-        player.move(-2, 0)
+        settings.player.move(-2, 0)
     if key[pygame.K_RIGHT]:
-        player.move(2, 0)
+        settings.player.move(2, 0)
     if key[pygame.K_UP]:
         if settings.jumping == False and settings.on_ground == True:
-            player.move(0, -2)
+            settings.player.move(0, -2)
             settings.jumping_to_go = settings.max_jump
             settings.jumping = True
     if key[pygame.K_DOWN]:
-        player.move(0, 2)
+        settings.player.move(0, 2)
     if settings.jumping_to_go <= 0:
-        player.move(0, 1)
+        settings.player.move(0, 1)
     if settings.jumping_to_go > 0 and settings.jumping == True:
         settings.jumping_to_go -= 2
-        player.move(0, -2)
+        settings.player.move(0, -2)
     elif settings.on_ground == True and settings.jumping_to_go <= 0:
         settings.jumping = False
     if not pygame.mixer.music.get_busy():
@@ -72,11 +70,16 @@ while settings.running:
     settings.screen.fill((0, 0, 0))
   
     for wall in settings.walls:
-        pygame.draw.rect(settings.screen, (255, 255, 255), wall.rect)
+        #pygame.draw.rect(settings.screen, (255, 255, 255), wall.rect)
         settings.screen.blit(wall_graphic, wall.rect)
-    pygame.draw.rect(settings.screen, (0, 0, 0), player.rect)
-    settings.screen.blit(player_graphic,(player.rect[0],player.rect[1]-8))
+    #pygame.draw.rect(settings.screen, (0, 0, 0), settings.player.rect)
+    settings.screen.blit(settings.player_graphic,(settings.player.rect[0],settings.player.rect[1]-8))
+    for ent in settings.ent_list:
+        ent.move(0,1)
+        ent.frame()
+        #pygame.draw.rect(settings.screen, (0, 0, 0), ent.rect)
+        settings.screen.blit(ent.graphic,(ent.rect[0],ent.rect[1]))
     
-    player.healthbar()
+    settings.player.healthbar()
 
     pygame.display.flip()

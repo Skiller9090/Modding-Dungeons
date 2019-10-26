@@ -1,5 +1,5 @@
 import pygame
-
+from player import Player
 def init():
     global walls
     global running
@@ -10,6 +10,8 @@ def init():
     global screen
     global sx
     global sy
+    global player
+    global ent_list
     walls = []
     running = True
     jumping = False
@@ -19,3 +21,5 @@ def init():
     sx = 640
     sy = 480
     screen = pygame.display.set_mode((sx, sy))
+    player = Player()
+    ent_list = []

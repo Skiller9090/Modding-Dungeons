@@ -38,6 +38,9 @@ class Player(object):
             settings.on_ground = True
         else:
             settings.on_ground = False
+        for ent in settings.ent_list:
+            if self.rect.colliderect(ent.rect):
+                ent.attack()
     def healthbar(self):
         pygame.draw.rect(settings.screen, (255, 0, 0),pygame.Rect(settings.sx-100,0,100,16))
         percent = self.health/self.maxhealth
