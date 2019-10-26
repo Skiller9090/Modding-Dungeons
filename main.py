@@ -28,12 +28,10 @@ x = y = 0
 def blank(x):
     return None
 block_ids = {"0": blank,"1": Wall,"2": ""}
-block_lists = {0: None, 1: settings.walls}
+#block_lists = {0: None, 1: settings.walls}
 for row in level:
     for col in row:
-        out = block_ids[col]((x, y))
-        if out != None:
-            block_lists[out.id].append(out)
+        block_ids[col]((x, y))
         x += 16
     y += 16
     x = 0
