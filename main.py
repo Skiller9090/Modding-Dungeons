@@ -63,5 +63,6 @@ while settings.running:
         settings.screen.blit(ent.graphic,(ent.rect[0],ent.rect[1]))
     
     settings.player.healthbar()
+    settings.player.display_gold()
 
     pygame.display.flip()

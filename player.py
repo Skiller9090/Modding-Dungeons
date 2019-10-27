@@ -42,6 +42,7 @@ class Player(object):
         for ent in settings.ent_list:
             if self.rect.colliderect(ent.rect):
                 ent.attack()
+                ent.on_death()
     def healthbar(self):
         pygame.draw.rect(settings.screen, (255, 0, 0),pygame.Rect(settings.sx-100,0,100,16))
         percent = self.health/self.maxhealth
@@ -49,4 +50,9 @@ class Player(object):
             percent = 1
         if percent < 0:
             percent = 0
-        pygame.draw.rect(settings.screen, (0, 255, 0),pygame.Rect(settings.sx-100,0,percent*100,16))    
+        pygame.draw.rect(settings.screen, (0, 255, 0),pygame.Rect(settings.sx-100,0,percent*100,16))
+    def display_gold(self):
+           text = settings.font.render(("Gold: "+str(self.gold)), True, (232, 180, 48), (0, 0, 0, 0))
+           textRect = text.get_rect()
+           textRect.topright = (settings.sx,16)
+           settings.screen.blit(text, textRect)

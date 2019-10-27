@@ -1,6 +1,8 @@
 import pygame
 from player import Player
 from pygame.locals import *
+
+
 def init():
     global walls
     global running
@@ -13,6 +15,7 @@ def init():
     global sy
     global player
     global ent_list
+    global font
     walls = []
     running = True
     jumping = False
@@ -24,3 +27,4 @@ def init():
     screen = pygame.display.set_mode((sx, sy),HWSURFACE|DOUBLEBUF|RESIZABLE)
     player = Player()
     ent_list = []
+    font = pygame.font.Font(None, 26)

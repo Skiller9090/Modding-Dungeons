@@ -47,10 +47,11 @@ class Base(object):
             self.attack_frames =  self.attack_every_frames
     def on_death(self):
         settings.player.inv.add_loot(self.drops)
-        settings.plyaer.gold += self.gold
+        settings.player.gold += self.gold
         settings.ent_list.remove(self)
 class Orc(Base):
     def __init__(self,x,y):
         super().__init__(x,y,"assets/0x72_DungeonTilesetII_v1.3/frames/orc_shaman_idle_anim_f0.png")
         settings.ent_list += [self]
+        self.gold = 100
         self.drops.append(generate_weapon(settings.player.xp))
