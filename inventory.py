@@ -34,5 +34,9 @@ class inventory():
     def remove_armor(self, item):
         self.Armor_Equiped.pop(self.get_armor_index(item))
 
-    def remove_armor_indec(self, index):
+    def remove_armor_index(self, index):
         self.Armor_Equiped.pop(index)
+    
+    def add_loot(self, loot):
+        for item in loot:
+            self.add_item(item)
