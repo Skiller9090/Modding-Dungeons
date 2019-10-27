@@ -1,5 +1,6 @@
 import pygame
 from player import Player
+from pygame.locals import *
 def init():
     global walls
     global running
@@ -20,6 +21,6 @@ def init():
     on_ground = False
     sx = 640
     sy = 480
-    screen = pygame.display.set_mode((sx, sy))
+    screen = pygame.display.set_mode((sx, sy),HWSURFACE|DOUBLEBUF|RESIZABLE)
     player = Player()
     ent_list = []

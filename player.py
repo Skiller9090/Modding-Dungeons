@@ -9,6 +9,8 @@ class Player(object):
         self.maxhealth = 100
         self.gold = 0
         self.inv = inventory()
+        self.xp = 0
+        self.level = 0
     def move(self, dx, dy):
         if dx != 0:
             self.move_axis(dx,0)

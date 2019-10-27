@@ -1,4 +1,5 @@
 import pygame
+from pygame.locals import *
 import os
 import random
 from blocks import Wall
@@ -21,7 +22,6 @@ settings.init()
 levelfile = open("level.txt","r")
 level = levelfile.read().split("\n")
 levelfile.close()
-
 x = y = 0
 def blank(x):
     return None
@@ -45,18 +45,17 @@ while settings.running:
             settings.running = False
         if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
             settings.running = False
-    
     key = pygame.key.get_pressed()
-    if key[pygame.K_LEFT]:
+    if key[pygame.K_LEFT] or key[pygame.K_a]:
         settings.player.move(-2, 0)
-    if key[pygame.K_RIGHT]:
+    if key[pygame.K_RIGHT] or key[pygame.K_d]:
         settings.player.move(2, 0)
-    if key[pygame.K_UP]:
+    if key[pygame.K_UP] or key[pygame.K_w]:
         if settings.jumping == False and settings.on_ground == True:
             settings.player.move(0, -2)
             settings.jumping_to_go = settings.max_jump
             settings.jumping = True
-    if key[pygame.K_DOWN]:
+    if key[pygame.K_DOWN] or key[pygame.K_s]:
         settings.player.move(0, 2)
     if settings.jumping_to_go <= 0:
         settings.player.move(0, 1)
@@ -77,6 +76,8 @@ while settings.running:
     for ent in settings.ent_list:
         ent.move(0,1)
         ent.frame()
+        for i in ent.drops:
+            print(i.damage,i.worth,i.name)
         #pygame.draw.rect(settings.screen, (0, 0, 0), ent.rect)
         settings.screen.blit(ent.graphic,(ent.rect[0],ent.rect[1]))
     
