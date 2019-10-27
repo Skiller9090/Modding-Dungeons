@@ -17,7 +17,7 @@ pygame.display.set_caption("Get to the red square!")
 music = pygame.mixer.music.load("assets/music/type2.wav")
 
 clock = pygame.time.Clock()
-#walls = []
+
 settings.init()
 
 levelfile = open("level.txt","r")
@@ -27,7 +27,7 @@ x = y = 0
 def blank(x):
     return None
 block_ids = {"0": blank,"1": Wall,"2": ""}
-#block_lists = {0: None, 1: settings.walls}
+
 for row in level:
     for col in row:
         block_ids[col]((x, y))
@@ -52,16 +52,14 @@ while settings.running:
     settings.screen.fill((0, 0, 0))
   
     for wall in settings.walls:
-        #pygame.draw.rect(settings.screen, (255, 255, 255), wall.rect)
         settings.screen.blit(wall_graphic, wall.rect)
-    #pygame.draw.rect(settings.screen, (0, 0, 0), settings.player.rect)
     settings.screen.blit(settings.player_graphic,(settings.player.rect[0],settings.player.rect[1]-8))
+    
     for ent in settings.ent_list:
         ent.move(0,1)
         ent.frame()
         for i in ent.drops:
             print(i.damage,i.worth,i.name)
-        #pygame.draw.rect(settings.screen, (0, 0, 0), ent.rect)
         settings.screen.blit(ent.graphic,(ent.rect[0],ent.rect[1]))
     
     settings.player.healthbar()

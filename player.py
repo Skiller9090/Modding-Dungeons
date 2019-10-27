@@ -21,7 +21,6 @@ class Player(object):
         return (self.rect.x, self.rect.y)
 
     def move_axis(self, dx, dy):
-        global on_ground
         self.rect.x += dx
         self.rect.y += dy
         og = False
